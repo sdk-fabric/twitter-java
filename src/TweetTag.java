@@ -31,6 +31,82 @@ public class TweetTag extends TagAbstract {
 
 
     /**
+     * Returns a variety of information about the Tweet specified by the requested ID or list of IDs.
+     */
+    public TweetCollectionResponse getAll(String ids, String expansions, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+        try {
+            Map<String, Object> pathParams = new HashMap<>();
+
+            Map<String, Object> queryParams = new HashMap<>();
+            queryParams.put("ids", ids);
+            queryParams.put("expansions", expansions);
+            queryParams.put("media.fields", mediaFields);
+            queryParams.put("place.fields", placeFields);
+            queryParams.put("poll.fields", pollFields);
+            queryParams.put("tweet.fields", tweetFields);
+            queryParams.put("user.fields", userFields);
+
+            URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets", pathParams));
+            this.parser.query(builder, queryParams);
+
+            HttpGet request = new HttpGet(builder.build());
+
+            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
+                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+            });
+
+            if (resp.code >= 200 && resp.code < 300) {
+                return this.parser.parse(resp.payload, TweetCollectionResponse.class);
+            }
+
+            switch (resp.code) {
+                default:
+                    throw new UnknownStatusCodeException("The server returned an unknown status code");
+            }
+        } catch (URISyntaxException | IOException e) {
+            throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Returns a variety of information about a single Tweet specified by the requested ID.
+     */
+    public TweetEntityResponse get(String tweetId, String expansions, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+        try {
+            Map<String, Object> pathParams = new HashMap<>();
+            pathParams.put("tweet_id", tweetId);
+
+            Map<String, Object> queryParams = new HashMap<>();
+            queryParams.put("expansions", expansions);
+            queryParams.put("media.fields", mediaFields);
+            queryParams.put("place.fields", placeFields);
+            queryParams.put("poll.fields", pollFields);
+            queryParams.put("tweet.fields", tweetFields);
+            queryParams.put("user.fields", userFields);
+
+            URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/:tweet_id", pathParams));
+            this.parser.query(builder, queryParams);
+
+            HttpGet request = new HttpGet(builder.build());
+
+            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
+                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+            });
+
+            if (resp.code >= 200 && resp.code < 300) {
+                return this.parser.parse(resp.payload, TweetEntityResponse.class);
+            }
+
+            switch (resp.code) {
+                default:
+                    throw new UnknownStatusCodeException("The server returned an unknown status code");
+            }
+        } catch (URISyntaxException | IOException e) {
+            throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
+        }
+    }
+
+    /**
      * Creates a Tweet on behalf of an authenticated user.
      */
     public TweetCreateResponse create(Tweet payload) throws ClientException {
@@ -66,14 +142,14 @@ public class TweetTag extends TagAbstract {
     /**
      * Allows a user or authenticated user ID to delete a Tweet.
      */
-    public TweetDeleteResponse delete(String id) throws ClientException {
+    public TweetDeleteResponse delete(String tweetId) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
-            pathParams.put("id", id);
+            pathParams.put("tweet_id", tweetId);
 
             Map<String, Object> queryParams = new HashMap<>();
 
-            URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/:id", pathParams));
+            URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/:tweet_id", pathParams));
             this.parser.query(builder, queryParams);
 
             HttpDelete request = new HttpDelete(builder.build());
@@ -84,82 +160,6 @@ public class TweetTag extends TagAbstract {
 
             if (resp.code >= 200 && resp.code < 300) {
                 return this.parser.parse(resp.payload, TweetDeleteResponse.class);
-            }
-
-            switch (resp.code) {
-                default:
-                    throw new UnknownStatusCodeException("The server returned an unknown status code");
-            }
-        } catch (URISyntaxException | IOException e) {
-            throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
-        }
-    }
-
-    /**
-     * Returns a variety of information about a single Tweet specified by the requested ID.
-     */
-    public TweetEntityResponse get(String id, String expansions, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
-        try {
-            Map<String, Object> pathParams = new HashMap<>();
-            pathParams.put("id", id);
-
-            Map<String, Object> queryParams = new HashMap<>();
-            queryParams.put("expansions", expansions);
-            queryParams.put("media.fields", mediaFields);
-            queryParams.put("place.fields", placeFields);
-            queryParams.put("poll.fields", pollFields);
-            queryParams.put("tweet.fields", tweetFields);
-            queryParams.put("user.fields", userFields);
-
-            URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/:id", pathParams));
-            this.parser.query(builder, queryParams);
-
-            HttpGet request = new HttpGet(builder.build());
-
-            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
-                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
-            });
-
-            if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, TweetEntityResponse.class);
-            }
-
-            switch (resp.code) {
-                default:
-                    throw new UnknownStatusCodeException("The server returned an unknown status code");
-            }
-        } catch (URISyntaxException | IOException e) {
-            throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
-        }
-    }
-
-    /**
-     * Returns a variety of information about the Tweet specified by the requested ID or list of IDs.
-     */
-    public TweetCollectionResponse getAll(String expansions, String ids, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
-        try {
-            Map<String, Object> pathParams = new HashMap<>();
-
-            Map<String, Object> queryParams = new HashMap<>();
-            queryParams.put("expansions", expansions);
-            queryParams.put("ids", ids);
-            queryParams.put("media.fields", mediaFields);
-            queryParams.put("place.fields", placeFields);
-            queryParams.put("poll.fields", pollFields);
-            queryParams.put("tweet.fields", tweetFields);
-            queryParams.put("user.fields", userFields);
-
-            URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets", pathParams));
-            this.parser.query(builder, queryParams);
-
-            HttpGet request = new HttpGet(builder.build());
-
-            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
-                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
-            });
-
-            if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, TweetCollectionResponse.class);
             }
 
             switch (resp.code) {

@@ -10,28 +10,28 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import java.util.List;
 import java.time.LocalDateTime;
 public class TweetDetails {
-    private String authorId;
-    private String conversationId;
-    private LocalDateTime createdAt;
-    private List<String> editHistoryTweetIds;
     private String id;
-    private String inReplyToUserId;
     private String text;
-    @JsonSetter("author_id")
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
+    private LocalDateTime createdAt;
+    private String authorId;
+    private List<String> editHistoryTweetIds;
+    private String conversationId;
+    private String inReplyToUserId;
+    @JsonSetter("id")
+    public void setId(String id) {
+        this.id = id;
     }
-    @JsonGetter("author_id")
-    public String getAuthorId() {
-        return this.authorId;
+    @JsonGetter("id")
+    public String getId() {
+        return this.id;
     }
-    @JsonSetter("conversation_id")
-    public void setConversationId(String conversationId) {
-        this.conversationId = conversationId;
+    @JsonSetter("text")
+    public void setText(String text) {
+        this.text = text;
     }
-    @JsonGetter("conversation_id")
-    public String getConversationId() {
-        return this.conversationId;
+    @JsonGetter("text")
+    public String getText() {
+        return this.text;
     }
     @JsonSetter("created_at")
     public void setCreatedAt(LocalDateTime createdAt) {
@@ -41,6 +41,14 @@ public class TweetDetails {
     public LocalDateTime getCreatedAt() {
         return this.createdAt;
     }
+    @JsonSetter("author_id")
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
+    }
+    @JsonGetter("author_id")
+    public String getAuthorId() {
+        return this.authorId;
+    }
     @JsonSetter("edit_history_tweet_ids")
     public void setEditHistoryTweetIds(List<String> editHistoryTweetIds) {
         this.editHistoryTweetIds = editHistoryTweetIds;
@@ -49,13 +57,13 @@ public class TweetDetails {
     public List<String> getEditHistoryTweetIds() {
         return this.editHistoryTweetIds;
     }
-    @JsonSetter("id")
-    public void setId(String id) {
-        this.id = id;
+    @JsonSetter("conversation_id")
+    public void setConversationId(String conversationId) {
+        this.conversationId = conversationId;
     }
-    @JsonGetter("id")
-    public String getId() {
-        return this.id;
+    @JsonGetter("conversation_id")
+    public String getConversationId() {
+        return this.conversationId;
     }
     @JsonSetter("in_reply_to_user_id")
     public void setInReplyToUserId(String inReplyToUserId) {
@@ -64,13 +72,5 @@ public class TweetDetails {
     @JsonGetter("in_reply_to_user_id")
     public String getInReplyToUserId() {
         return this.inReplyToUserId;
-    }
-    @JsonSetter("text")
-    public void setText(String text) {
-        this.text = text;
-    }
-    @JsonGetter("text")
-    public String getText() {
-        return this.text;
     }
 }
