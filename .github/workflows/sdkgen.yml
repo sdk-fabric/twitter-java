@@ -9,6 +9,7 @@ on:
       typehub_changelog:
         required: false
 permissions:
+  actions: 'write'
   contents: 'write'
 jobs:
   generate:
