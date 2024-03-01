@@ -70,7 +70,7 @@ public class BookmarkTag extends TagAbstract {
         }
     }
 
-    public Tweet create(String userId, Tweet payload) throws ClientException {
+    public BookmarkCreateResponse create(String userId, BookmarkCreate payload) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);
@@ -89,7 +89,7 @@ public class BookmarkTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, Tweet.class);
+                return this.parser.parse(resp.payload, BookmarkCreateResponse.class);
             }
 
             switch (resp.code) {
