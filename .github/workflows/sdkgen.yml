@@ -8,9 +8,6 @@ on:
         required: false
       typehub_changelog:
         required: false
-permissions:
-  actions: 'write'
-  contents: 'write'
 jobs:
   generate:
     runs-on: ubuntu-latest
@@ -20,6 +17,7 @@ jobs:
         with:
           client_id: '${{ secrets.SDKGEN_CLIENT_ID }}'
           client_secret: '${{ secrets.SDKGEN_CLIENT_SECRET }}'
+          token: '${{ secrets.SDKFABRIC_GITHUB_TOKEN }}'
           typehub_message: '${{ inputs.typehub_message }}'
           typehub_version: '${{ inputs.typehub_version }}'
           typehub_changelog: '${{ inputs.typehub_changelog }}'
