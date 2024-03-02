@@ -2,7 +2,7 @@
   "type": "client-java",
   "require": {
     "sdkfabric/twitter": {
-      "target": "./src",
+      "target": "./src/main/java/org/sdkfabric/twitter",
       "namespace": "org.sdkfabric.twitter"
     }
   }
