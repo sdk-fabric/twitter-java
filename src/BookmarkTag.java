@@ -70,7 +70,7 @@ public class BookmarkTag extends TagAbstract {
         }
     }
 
-    public BookmarkCreateResponse create(String userId, BookmarkCreate payload) throws ClientException {
+    public BookmarkResponse create(String userId, BookmarkCreate payload) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);
@@ -89,7 +89,37 @@ public class BookmarkTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, BookmarkCreateResponse.class);
+                return this.parser.parse(resp.payload, BookmarkResponse.class);
+            }
+
+            switch (resp.code) {
+                default:
+                    throw new UnknownStatusCodeException("The server returned an unknown status code");
+            }
+        } catch (URISyntaxException | IOException e) {
+            throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
+        }
+    }
+
+    public BookmarkResponse delete(String userId, String tweetId) throws ClientException {
+        try {
+            Map<String, Object> pathParams = new HashMap<>();
+            pathParams.put("user_id", userId);
+            pathParams.put("tweet_id", tweetId);
+
+            Map<String, Object> queryParams = new HashMap<>();
+
+            URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/bookmarks/:tweet_id", pathParams));
+            this.parser.query(builder, queryParams);
+
+            HttpDelete request = new HttpDelete(builder.build());
+
+            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
+                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+            });
+
+            if (resp.code >= 200 && resp.code < 300) {
+                return this.parser.parse(resp.payload, BookmarkResponse.class);
             }
 
             switch (resp.code) {
