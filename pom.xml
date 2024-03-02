@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.sdkfabric</groupId>
+  <groupId>org.sdk-fabric</groupId>
   <artifactId>twitter</artifactId>
   <version>0.3.0</version>
   <packaging>jar</packaging>
@@ -15,6 +15,18 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+  <developers>
+    <developer>
+      <id>chriskapp</id>
+      <name>Christoph Kappestein</name>
+      <email>christoph.kappestein@gmail.com</email>
+      <url>https://chrisk.app/</url>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>Europe/Berlin</timezone>
+    </developer>
+  </developers>
   <scm>
     <url>https://github.com/sdk-fabric/twitter-java</url>
   </scm>
