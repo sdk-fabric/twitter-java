@@ -67,6 +67,15 @@ public class Client extends ClientAbstract {
         );
     }
 
+    public LikesTag likes()
+    {
+        return new LikesTag(
+            this.httpClient,
+            this.objectMapper,
+            this.parser
+        );
+    }
+
 
 
     public static Client build(String token) throws InvalidCredentialsException
