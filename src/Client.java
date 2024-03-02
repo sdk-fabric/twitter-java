@@ -67,6 +67,15 @@ public class Client extends ClientAbstract {
         );
     }
 
+    public SearchTag search()
+    {
+        return new SearchTag(
+            this.httpClient,
+            this.objectMapper,
+            this.parser
+        );
+    }
+
 
 
     public static Client build(String token) throws InvalidCredentialsException

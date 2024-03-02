@@ -75,7 +75,7 @@ public class UserTag extends TagAbstract {
     /**
      * Tweets liked by a user
      */
-    public TweetCollectionResponse getLikedTweets(String userId, String expansions, String maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+    public TweetCollectionResponse getLikedTweets(String userId, String expansions, int maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);

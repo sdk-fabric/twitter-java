@@ -33,7 +33,7 @@ public class BookmarkTag extends TagAbstract {
     /**
      * Allows you to get an authenticated user&#039;s 800 most recent bookmarked Tweets.
      */
-    public TweetCollectionResponse getAll(String userId, String expansions, String maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+    public TweetCollectionResponse getAll(String userId, String expansions, int maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);
