@@ -23,6 +23,7 @@ jobs:
           typehub_version: '${{ inputs.typehub_version }}'
           typehub_changelog: '${{ inputs.typehub_changelog }}'
   publish:
+    if: "${{ inputs.typehub_version != '' }}"
     needs: generate
     runs-on: ubuntu-latest
     steps:
