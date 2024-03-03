@@ -70,7 +70,7 @@ public class BookmarkTag extends TagAbstract {
         }
     }
 
-    public BookmarkResponse create(String userId, BookmarkCreate payload) throws ClientException {
+    public BookmarkResponse create(String userId, SingleTweet payload) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);
