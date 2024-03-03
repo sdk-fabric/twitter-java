@@ -112,5 +112,66 @@ public class UserTag extends TagAbstract {
         }
     }
 
+    public LikeResponse removeLike(String userId, String tweetId) throws ClientException {
+        try {
+            Map<String, Object> pathParams = new HashMap<>();
+            pathParams.put("user_id", userId);
+            pathParams.put("tweet_id", tweetId);
+
+            Map<String, Object> queryParams = new HashMap<>();
+
+            URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/likes/:tweet_id", pathParams));
+            this.parser.query(builder, queryParams);
+
+            HttpDelete request = new HttpDelete(builder.build());
+
+            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
+                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+            });
+
+            if (resp.code >= 200 && resp.code < 300) {
+                return this.parser.parse(resp.payload, LikeResponse.class);
+            }
+
+            switch (resp.code) {
+                default:
+                    throw new UnknownStatusCodeException("The server returned an unknown status code");
+            }
+        } catch (URISyntaxException | IOException e) {
+            throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
+        }
+    }
+
+    public LikeResponse createLike(String userId, SingleTweet payload) throws ClientException {
+        try {
+            Map<String, Object> pathParams = new HashMap<>();
+            pathParams.put("user_id", userId);
+
+            Map<String, Object> queryParams = new HashMap<>();
+
+            URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/likes", pathParams));
+            this.parser.query(builder, queryParams);
+
+            HttpPost request = new HttpPost(builder.build());
+            request.addHeader("Content-Type", "application/json");
+            request.setEntity(new StringEntity(this.objectMapper.writeValueAsString(payload), ContentType.APPLICATION_JSON));
+
+            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
+                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+            });
+
+            if (resp.code >= 200 && resp.code < 300) {
+                return this.parser.parse(resp.payload, LikeResponse.class);
+            }
+
+            switch (resp.code) {
+                default:
+                    throw new UnknownStatusCodeException("The server returned an unknown status code");
+            }
+        } catch (URISyntaxException | IOException e) {
+            throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
+        }
+    }
+
 
 }
