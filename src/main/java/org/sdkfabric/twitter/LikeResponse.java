@@ -7,7 +7,6 @@ package org.sdkfabric.twitter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 public class LikeResponse {
     private LikeResponseMessage data;
     @JsonSetter("data")

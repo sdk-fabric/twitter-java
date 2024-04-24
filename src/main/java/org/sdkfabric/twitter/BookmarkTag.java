@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BookmarkTag extends TagAbstract {
@@ -33,7 +35,7 @@ public class BookmarkTag extends TagAbstract {
     /**
      * Allows you to get an authenticated user&#039;s 800 most recent bookmarked Tweets.
      */
-    public TweetCollectionResponse getAll(String userId, String expansions, int maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+    public TweetCollectionResponse getAll(String userId, String expansions, Integer maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);
@@ -48,8 +50,10 @@ public class BookmarkTag extends TagAbstract {
             queryParams.put("tweet.fields", tweetFields);
             queryParams.put("user.fields", userFields);
 
+            List<String> queryStructNames = new ArrayList<String>();
+
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/bookmarks", pathParams));
-            this.parser.query(builder, queryParams);
+            this.parser.query(builder, queryParams, queryStructNames);
 
             HttpGet request = new HttpGet(builder.build());
 
@@ -77,8 +81,10 @@ public class BookmarkTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
+            List<String> queryStructNames = new ArrayList<String>();
+
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/bookmarks", pathParams));
-            this.parser.query(builder, queryParams);
+            this.parser.query(builder, queryParams, queryStructNames);
 
             HttpPost request = new HttpPost(builder.build());
             request.addHeader("Content-Type", "application/json");
@@ -109,8 +115,10 @@ public class BookmarkTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
+            List<String> queryStructNames = new ArrayList<String>();
+
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/bookmarks/:tweet_id", pathParams));
-            this.parser.query(builder, queryParams);
+            this.parser.query(builder, queryParams, queryStructNames);
 
             HttpDelete request = new HttpDelete(builder.build());
 

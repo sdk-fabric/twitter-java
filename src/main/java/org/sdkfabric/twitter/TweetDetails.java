@@ -7,8 +7,8 @@ package org.sdkfabric.twitter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 import java.time.LocalDateTime;
+import java.util.List;
 public class TweetDetails {
     private String id;
     private String text;

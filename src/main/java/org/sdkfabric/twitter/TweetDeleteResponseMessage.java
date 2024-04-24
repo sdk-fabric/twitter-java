@@ -7,15 +7,14 @@ package org.sdkfabric.twitter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 public class TweetDeleteResponseMessage {
-    private boolean deleted;
+    private Boolean deleted;
     @JsonSetter("deleted")
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
     @JsonGetter("deleted")
-    public boolean getDeleted() {
+    public Boolean getDeleted() {
         return this.deleted;
     }
 }

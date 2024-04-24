@@ -7,15 +7,14 @@ package org.sdkfabric.twitter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 public class HideReplyUpdate {
-    private boolean hidden;
+    private Boolean hidden;
     @JsonSetter("hidden")
-    public void setHidden(boolean hidden) {
+    public void setHidden(Boolean hidden) {
         this.hidden = hidden;
     }
     @JsonGetter("hidden")
-    public boolean getHidden() {
+    public Boolean getHidden() {
         return this.hidden;
     }
 }

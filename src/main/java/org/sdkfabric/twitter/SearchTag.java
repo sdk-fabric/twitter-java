@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SearchTag extends TagAbstract {
@@ -30,7 +32,7 @@ public class SearchTag extends TagAbstract {
     }
 
 
-    public TweetCollectionResponse getRecent(String query, String startTime, String endTime, String sinceId, String untilId, String sortOrder, String expansions, int maxResults, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+    public TweetCollectionResponse getRecent(String query, String startTime, String endTime, String sinceId, String untilId, String sortOrder, String expansions, Integer maxResults, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
 
@@ -49,8 +51,10 @@ public class SearchTag extends TagAbstract {
             queryParams.put("tweet.fields", tweetFields);
             queryParams.put("user.fields", userFields);
 
+            List<String> queryStructNames = new ArrayList<String>();
+
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/search/recent", pathParams));
-            this.parser.query(builder, queryParams);
+            this.parser.query(builder, queryParams, queryStructNames);
 
             HttpGet request = new HttpGet(builder.build());
 

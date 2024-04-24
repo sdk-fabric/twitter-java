@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class QuoteTag extends TagAbstract {
@@ -33,7 +35,7 @@ public class QuoteTag extends TagAbstract {
     /**
      * Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
      */
-    public TweetCollectionResponse getAll(String tweetId, String exclude, String expansions, int maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+    public TweetCollectionResponse getAll(String tweetId, String exclude, String expansions, Integer maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("tweet_id", tweetId);
@@ -49,8 +51,10 @@ public class QuoteTag extends TagAbstract {
             queryParams.put("tweet.fields", tweetFields);
             queryParams.put("user.fields", userFields);
 
+            List<String> queryStructNames = new ArrayList<String>();
+
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/:tweet_id/quote_tweets", pathParams));
-            this.parser.query(builder, queryParams);
+            this.parser.query(builder, queryParams, queryStructNames);
 
             HttpGet request = new HttpGet(builder.build());
 

@@ -7,18 +7,17 @@ package org.sdkfabric.twitter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 public class TweetUsage {
-    private int capResetDay;
+    private Integer capResetDay;
     private String projectCap;
     private String projectId;
     private String projectUsage;
     @JsonSetter("cap_reset_day")
-    public void setCapResetDay(int capResetDay) {
+    public void setCapResetDay(Integer capResetDay) {
         this.capResetDay = capResetDay;
     }
     @JsonGetter("cap_reset_day")
-    public int getCapResetDay() {
+    public Integer getCapResetDay() {
         return this.capResetDay;
     }
     @JsonSetter("project_cap")

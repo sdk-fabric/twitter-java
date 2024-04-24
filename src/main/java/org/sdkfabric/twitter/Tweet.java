@@ -7,10 +7,9 @@ package org.sdkfabric.twitter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 public class Tweet {
     private String directMessageDeepLink;
-    private boolean forSuperFollowersOnly;
+    private Boolean forSuperFollowersOnly;
     private TweetGeo geo;
     private TweetMedia media;
     private TweetPoll poll;
@@ -27,11 +26,11 @@ public class Tweet {
         return this.directMessageDeepLink;
     }
     @JsonSetter("for_super_followers_only")
-    public void setForSuperFollowersOnly(boolean forSuperFollowersOnly) {
+    public void setForSuperFollowersOnly(Boolean forSuperFollowersOnly) {
         this.forSuperFollowersOnly = forSuperFollowersOnly;
     }
     @JsonGetter("for_super_followers_only")
-    public boolean getForSuperFollowersOnly() {
+    public Boolean getForSuperFollowersOnly() {
         return this.forSuperFollowersOnly;
     }
     @JsonSetter("geo")

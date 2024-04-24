@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import java.util.List;
 public class TweetPoll {
-    private int durationMinutes;
+    private Integer durationMinutes;
     private List<String> options;
     @JsonSetter("duration_minutes")
-    public void setDurationMinutes(int durationMinutes) {
+    public void setDurationMinutes(Integer durationMinutes) {
         this.durationMinutes = durationMinutes;
     }
     @JsonGetter("duration_minutes")
-    public int getDurationMinutes() {
+    public Integer getDurationMinutes() {
         return this.durationMinutes;
     }
     @JsonSetter("options")

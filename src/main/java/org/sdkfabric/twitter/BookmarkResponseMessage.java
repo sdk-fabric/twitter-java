@@ -7,15 +7,14 @@ package org.sdkfabric.twitter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 public class BookmarkResponseMessage {
-    private boolean bookmarked;
+    private Boolean bookmarked;
     @JsonSetter("bookmarked")
-    public void setBookmarked(boolean bookmarked) {
+    public void setBookmarked(Boolean bookmarked) {
         this.bookmarked = bookmarked;
     }
     @JsonGetter("bookmarked")
-    public boolean getBookmarked() {
+    public Boolean getBookmarked() {
         return this.bookmarked;
     }
 }

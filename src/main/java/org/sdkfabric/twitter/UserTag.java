@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class UserTag extends TagAbstract {
@@ -30,7 +32,7 @@ public class UserTag extends TagAbstract {
     }
 
 
-    public TweetCollectionResponse getTimeline(String userId, String startTime, String endTime, String sinceId, String untilId, String exclude, String expansions, int maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+    public TweetCollectionResponse getTimeline(String userId, String startTime, String endTime, String sinceId, String untilId, String exclude, String expansions, Integer maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);
@@ -50,8 +52,10 @@ public class UserTag extends TagAbstract {
             queryParams.put("tweet.fields", tweetFields);
             queryParams.put("user.fields", userFields);
 
+            List<String> queryStructNames = new ArrayList<String>();
+
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/timelines/reverse_chronological", pathParams));
-            this.parser.query(builder, queryParams);
+            this.parser.query(builder, queryParams, queryStructNames);
 
             HttpGet request = new HttpGet(builder.build());
 
@@ -75,7 +79,7 @@ public class UserTag extends TagAbstract {
     /**
      * Tweets liked by a user
      */
-    public TweetCollectionResponse getLikedTweets(String userId, String expansions, int maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+    public TweetCollectionResponse getLikedTweets(String userId, String expansions, Integer maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);
@@ -90,8 +94,10 @@ public class UserTag extends TagAbstract {
             queryParams.put("tweet.fields", tweetFields);
             queryParams.put("user.fields", userFields);
 
+            List<String> queryStructNames = new ArrayList<String>();
+
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/liked_tweets", pathParams));
-            this.parser.query(builder, queryParams);
+            this.parser.query(builder, queryParams, queryStructNames);
 
             HttpGet request = new HttpGet(builder.build());
 
@@ -120,8 +126,10 @@ public class UserTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
+            List<String> queryStructNames = new ArrayList<String>();
+
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/likes/:tweet_id", pathParams));
-            this.parser.query(builder, queryParams);
+            this.parser.query(builder, queryParams, queryStructNames);
 
             HttpDelete request = new HttpDelete(builder.build());
 
@@ -149,8 +157,10 @@ public class UserTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
+            List<String> queryStructNames = new ArrayList<String>();
+
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/likes", pathParams));
-            this.parser.query(builder, queryParams);
+            this.parser.query(builder, queryParams, queryStructNames);
 
             HttpPost request = new HttpPost(builder.build());
             request.addHeader("Content-Type", "application/json");
