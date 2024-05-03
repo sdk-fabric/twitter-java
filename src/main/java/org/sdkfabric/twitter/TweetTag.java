@@ -35,20 +35,17 @@ public class TweetTag extends TagAbstract {
     /**
      * Returns a variety of information about the Tweet specified by the requested ID or list of IDs.
      */
-    public TweetCollectionResponse getAll(String ids, String expansions, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+    public TweetCollectionResponse getAll(String ids, String expansions, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
 
             Map<String, Object> queryParams = new HashMap<>();
             queryParams.put("ids", ids);
             queryParams.put("expansions", expansions);
-            queryParams.put("media.fields", mediaFields);
-            queryParams.put("place.fields", placeFields);
-            queryParams.put("poll.fields", pollFields);
-            queryParams.put("tweet.fields", tweetFields);
-            queryParams.put("user.fields", userFields);
+            queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
+            queryStructNames.put('fields'),
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -75,20 +72,17 @@ public class TweetTag extends TagAbstract {
     /**
      * Returns a variety of information about a single Tweet specified by the requested ID.
      */
-    public TweetEntityResponse get(String tweetId, String expansions, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+    public TweetEntityResponse get(String tweetId, String expansions, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("tweet_id", tweetId);
 
             Map<String, Object> queryParams = new HashMap<>();
             queryParams.put("expansions", expansions);
-            queryParams.put("media.fields", mediaFields);
-            queryParams.put("place.fields", placeFields);
-            queryParams.put("poll.fields", pollFields);
-            queryParams.put("tweet.fields", tweetFields);
-            queryParams.put("user.fields", userFields);
+            queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
+            queryStructNames.put('fields'),
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/:tweet_id", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);

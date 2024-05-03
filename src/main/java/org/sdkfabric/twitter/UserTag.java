@@ -32,7 +32,7 @@ public class UserTag extends TagAbstract {
     }
 
 
-    public TweetCollectionResponse getTimeline(String userId, String startTime, String endTime, String sinceId, String untilId, String exclude, String expansions, Integer maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+    public TweetCollectionResponse getTimeline(String userId, String startTime, String endTime, String sinceId, String untilId, String exclude, String expansions, Integer maxResults, String paginationToken, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);
@@ -46,13 +46,10 @@ public class UserTag extends TagAbstract {
             queryParams.put("expansions", expansions);
             queryParams.put("max_results", maxResults);
             queryParams.put("pagination_token", paginationToken);
-            queryParams.put("media.fields", mediaFields);
-            queryParams.put("place.fields", placeFields);
-            queryParams.put("poll.fields", pollFields);
-            queryParams.put("tweet.fields", tweetFields);
-            queryParams.put("user.fields", userFields);
+            queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
+            queryStructNames.put('fields'),
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/timelines/reverse_chronological", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -79,7 +76,7 @@ public class UserTag extends TagAbstract {
     /**
      * Tweets liked by a user
      */
-    public TweetCollectionResponse getLikedTweets(String userId, String expansions, Integer maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+    public TweetCollectionResponse getLikedTweets(String userId, String expansions, Integer maxResults, String paginationToken, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);
@@ -88,13 +85,10 @@ public class UserTag extends TagAbstract {
             queryParams.put("expansions", expansions);
             queryParams.put("max_results", maxResults);
             queryParams.put("pagination_token", paginationToken);
-            queryParams.put("media.fields", mediaFields);
-            queryParams.put("place.fields", placeFields);
-            queryParams.put("poll.fields", pollFields);
-            queryParams.put("tweet.fields", tweetFields);
-            queryParams.put("user.fields", userFields);
+            queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
+            queryStructNames.put('fields'),
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/liked_tweets", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);

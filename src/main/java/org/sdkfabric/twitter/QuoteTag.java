@@ -35,7 +35,7 @@ public class QuoteTag extends TagAbstract {
     /**
      * Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
      */
-    public TweetCollectionResponse getAll(String tweetId, String exclude, String expansions, Integer maxResults, String paginationToken, String mediaFields, String placeFields, String pollFields, String tweetFields, String userFields) throws ClientException {
+    public TweetCollectionResponse getAll(String tweetId, String exclude, String expansions, Integer maxResults, String paginationToken, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("tweet_id", tweetId);
@@ -45,13 +45,10 @@ public class QuoteTag extends TagAbstract {
             queryParams.put("expansions", expansions);
             queryParams.put("max_results", maxResults);
             queryParams.put("pagination_token", paginationToken);
-            queryParams.put("media.fields", mediaFields);
-            queryParams.put("place.fields", placeFields);
-            queryParams.put("poll.fields", pollFields);
-            queryParams.put("tweet.fields", tweetFields);
-            queryParams.put("user.fields", userFields);
+            queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
+            queryStructNames.put('fields'),
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/:tweet_id/quote_tweets", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
