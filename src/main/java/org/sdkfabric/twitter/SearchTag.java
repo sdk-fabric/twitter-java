@@ -32,7 +32,7 @@ public class SearchTag extends TagAbstract {
     }
 
 
-    public TweetCollectionResponse getRecent(String query, String startTime, String endTime, String sinceId, String untilId, String sortOrder, String expansions, Integer maxResults, Fields fields) throws ClientException {
+    public TweetCollection getRecent(String query, String startTime, String endTime, String sinceId, String untilId, String sortOrder, String expansions, Integer maxResults, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
 
@@ -60,7 +60,7 @@ public class SearchTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, TweetCollectionResponse.class);
+                return this.parser.parse(resp.payload, TweetCollection.class);
             }
 
             switch (resp.code) {

@@ -35,7 +35,7 @@ public class TrendsTag extends TagAbstract {
     /**
      * The Trends lookup endpoint allow developers to get the Trends for a location, specified using the where-on-earth id (WOEID).
      */
-    public TrendsResponse byWoeid(String woeid) throws ClientException {
+    public TrendCollection getByWoeid(String woeid) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("woeid", woeid);
@@ -54,7 +54,7 @@ public class TrendsTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, TrendsResponse.class);
+                return this.parser.parse(resp.payload, TrendCollection.class);
             }
 
             switch (resp.code) {

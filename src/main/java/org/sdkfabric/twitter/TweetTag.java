@@ -35,7 +35,7 @@ public class TweetTag extends TagAbstract {
     /**
      * Returns a variety of information about the Tweet specified by the requested ID or list of IDs.
      */
-    public TweetCollectionResponse getAll(String ids, String expansions, Fields fields) throws ClientException {
+    public TweetCollection getAll(String ids, String expansions, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
 
@@ -57,7 +57,7 @@ public class TweetTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, TweetCollectionResponse.class);
+                return this.parser.parse(resp.payload, TweetCollection.class);
             }
 
             switch (resp.code) {
@@ -72,7 +72,7 @@ public class TweetTag extends TagAbstract {
     /**
      * Returns a variety of information about a single Tweet specified by the requested ID.
      */
-    public TweetEntityResponse get(String tweetId, String expansions, Fields fields) throws ClientException {
+    public TweetEntity get(String tweetId, String expansions, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("tweet_id", tweetId);
@@ -94,7 +94,7 @@ public class TweetTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, TweetEntityResponse.class);
+                return this.parser.parse(resp.payload, TweetEntity.class);
             }
 
             switch (resp.code) {
@@ -178,7 +178,7 @@ public class TweetTag extends TagAbstract {
     /**
      * Hides or unhides a reply to a Tweet.
      */
-    public HideReplyResponse hideReply(String tweetId, HideReplyUpdate payload) throws ClientException {
+    public HideReplyResponse hideReply(String tweetId, HideReply payload) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("tweet_id", tweetId);

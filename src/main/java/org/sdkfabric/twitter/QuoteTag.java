@@ -35,7 +35,7 @@ public class QuoteTag extends TagAbstract {
     /**
      * Returns Quote Tweets for a Tweet specified by the requested Tweet ID.
      */
-    public TweetCollectionResponse getAll(String tweetId, String exclude, String expansions, Integer maxResults, String paginationToken, Fields fields) throws ClientException {
+    public TweetCollection getAll(String tweetId, String exclude, String expansions, Integer maxResults, String paginationToken, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("tweet_id", tweetId);
@@ -60,7 +60,7 @@ public class QuoteTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, TweetCollectionResponse.class);
+                return this.parser.parse(resp.payload, TweetCollection.class);
             }
 
             switch (resp.code) {

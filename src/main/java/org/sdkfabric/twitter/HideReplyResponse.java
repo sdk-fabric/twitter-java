@@ -8,13 +8,13 @@ package org.sdkfabric.twitter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 public class HideReplyResponse {
-    private HideReplyUpdate data;
+    private HideReply data;
     @JsonSetter("data")
-    public void setData(HideReplyUpdate data) {
+    public void setData(HideReply data) {
         this.data = data;
     }
     @JsonGetter("data")
-    public HideReplyUpdate getData() {
+    public HideReply getData() {
         return this.data;
     }
 }

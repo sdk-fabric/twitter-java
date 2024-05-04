@@ -8,13 +8,13 @@ package org.sdkfabric.twitter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 public class TweetDeleteResponse {
-    private TweetDeleteResponseMessage data;
+    private TweetDelete data;
     @JsonSetter("data")
-    public void setData(TweetDeleteResponseMessage data) {
+    public void setData(TweetDelete data) {
         this.data = data;
     }
     @JsonGetter("data")
-    public TweetDeleteResponseMessage getData() {
+    public TweetDelete getData() {
         return this.data;
     }
 }

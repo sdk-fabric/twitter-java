@@ -32,7 +32,7 @@ public class UserTag extends TagAbstract {
     }
 
 
-    public TweetCollectionResponse getTimeline(String userId, String startTime, String endTime, String sinceId, String untilId, String exclude, String expansions, Integer maxResults, String paginationToken, Fields fields) throws ClientException {
+    public TweetCollection getTimeline(String userId, String startTime, String endTime, String sinceId, String untilId, String exclude, String expansions, Integer maxResults, String paginationToken, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);
@@ -61,7 +61,7 @@ public class UserTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, TweetCollectionResponse.class);
+                return this.parser.parse(resp.payload, TweetCollection.class);
             }
 
             switch (resp.code) {
@@ -76,7 +76,7 @@ public class UserTag extends TagAbstract {
     /**
      * Tweets liked by a user
      */
-    public TweetCollectionResponse getLikedTweets(String userId, String expansions, Integer maxResults, String paginationToken, Fields fields) throws ClientException {
+    public TweetCollection getLikedTweets(String userId, String expansions, Integer maxResults, String paginationToken, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);
@@ -100,7 +100,7 @@ public class UserTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, TweetCollectionResponse.class);
+                return this.parser.parse(resp.payload, TweetCollection.class);
             }
 
             switch (resp.code) {
@@ -166,6 +166,40 @@ public class UserTag extends TagAbstract {
 
             if (resp.code >= 200 && resp.code < 300) {
                 return this.parser.parse(resp.payload, LikeResponse.class);
+            }
+
+            switch (resp.code) {
+                default:
+                    throw new UnknownStatusCodeException("The server returned an unknown status code");
+            }
+        } catch (URISyntaxException | IOException e) {
+            throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
+        }
+    }
+
+    public UserCollection findByName(String usernames, String expansions, Fields fields) throws ClientException {
+        try {
+            Map<String, Object> pathParams = new HashMap<>();
+
+            Map<String, Object> queryParams = new HashMap<>();
+            queryParams.put("usernames", usernames);
+            queryParams.put("expansions", expansions);
+            queryParams.put("fields", fields);
+
+            List<String> queryStructNames = new ArrayList<String>();
+            queryStructNames.put('fields'),
+
+            URIBuilder builder = new URIBuilder(this.parser.url("/2/users/by", pathParams));
+            this.parser.query(builder, queryParams, queryStructNames);
+
+            HttpGet request = new HttpGet(builder.build());
+
+            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
+                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+            });
+
+            if (resp.code >= 200 && resp.code < 300) {
+                return this.parser.parse(resp.payload, UserCollection.class);
             }
 
             switch (resp.code) {
