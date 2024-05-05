@@ -115,6 +115,9 @@ public class UserTag extends TagAbstract {
         }
     }
 
+    /**
+     * Allows a user or authenticated user ID to unlike a Tweet.
+     */
     public LikeResponse removeLike(String userId, String tweetId) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
@@ -147,6 +150,9 @@ public class UserTag extends TagAbstract {
         }
     }
 
+    /**
+     * Causes the user ID identified in the path parameter to Like the target Tweet.
+     */
     public LikeResponse createLike(String userId, SingleTweet payload) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
@@ -180,6 +186,9 @@ public class UserTag extends TagAbstract {
         }
     }
 
+    /**
+     * Returns a variety of information about one or more users specified by their usernames.
+     */
     public UserCollection findByName(String usernames, String expansions, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
