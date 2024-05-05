@@ -32,6 +32,9 @@ public class UserTag extends TagAbstract {
     }
 
 
+    /**
+     * Allows you to retrieve a collection of the most recent Tweets and Retweets posted by you and users you follow. This endpoint can return every Tweet created on a timeline over the last 7 days as well as the most recent 800 regardless of creation date.
+     */
     public TweetCollection getTimeline(String userId, String startTime, String endTime, String sinceId, String untilId, String exclude, String expansions, Integer maxResults, String paginationToken, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
@@ -49,7 +52,7 @@ public class UserTag extends TagAbstract {
             queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put('fields'),
+            queryStructNames.put('fields');
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/timelines/reverse_chronological", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -88,7 +91,7 @@ public class UserTag extends TagAbstract {
             queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put('fields'),
+            queryStructNames.put('fields');
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/liked_tweets", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -187,7 +190,7 @@ public class UserTag extends TagAbstract {
             queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put('fields'),
+            queryStructNames.put('fields');
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/by", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);

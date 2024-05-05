@@ -48,7 +48,7 @@ public class QuoteTag extends TagAbstract {
             queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put('fields'),
+            queryStructNames.put('fields');
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/:tweet_id/quote_tweets", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);

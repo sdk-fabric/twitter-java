@@ -47,7 +47,7 @@ public class BookmarkTag extends TagAbstract {
             queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put('fields'),
+            queryStructNames.put('fields');
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/bookmarks", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
