@@ -35,23 +35,19 @@ public class UserTag extends TagAbstract {
     /**
      * Allows you to retrieve a collection of the most recent Tweets and Retweets posted by you and users you follow. This endpoint can return every Tweet created on a timeline over the last 7 days as well as the most recent 800 regardless of creation date.
      */
-    public TweetCollection getTimeline(String userId, String startTime, String endTime, String sinceId, String untilId, String exclude, String expansions, Integer maxResults, String paginationToken, Fields fields) throws ClientException {
+    public TweetCollection getTimeline(String userId, String exclude, String expansions, Pagination pagination, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
             pathParams.put("user_id", userId);
 
             Map<String, Object> queryParams = new HashMap<>();
-            queryParams.put("start_time", startTime);
-            queryParams.put("end_time", endTime);
-            queryParams.put("since_id", sinceId);
-            queryParams.put("until_id", untilId);
             queryParams.put("exclude", exclude);
             queryParams.put("expansions", expansions);
-            queryParams.put("max_results", maxResults);
-            queryParams.put("pagination_token", paginationToken);
+            queryParams.put("pagination", pagination);
             queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
+            queryStructNames.put('pagination');
             queryStructNames.put('fields');
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/timelines/reverse_chronological", pathParams));

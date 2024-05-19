@@ -32,22 +32,19 @@ public class SearchTag extends TagAbstract {
     }
 
 
-    public TweetCollection getRecent(String query, String startTime, String endTime, String sinceId, String untilId, String sortOrder, String expansions, Integer maxResults, Fields fields) throws ClientException {
+    public TweetCollection getRecent(String query, String sortOrder, String expansions, Pagination pagination, Fields fields) throws ClientException {
         try {
             Map<String, Object> pathParams = new HashMap<>();
 
             Map<String, Object> queryParams = new HashMap<>();
             queryParams.put("query", query);
-            queryParams.put("start_time", startTime);
-            queryParams.put("end_time", endTime);
-            queryParams.put("since_id", sinceId);
-            queryParams.put("until_id", untilId);
             queryParams.put("sort_order", sortOrder);
             queryParams.put("expansions", expansions);
-            queryParams.put("max_results", maxResults);
+            queryParams.put("pagination", pagination);
             queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
+            queryStructNames.put('pagination');
             queryStructNames.put('fields');
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/search/recent", pathParams));
