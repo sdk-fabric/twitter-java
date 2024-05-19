@@ -44,8 +44,8 @@ public class SearchTag extends TagAbstract {
             queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put('pagination');
-            queryStructNames.put('fields');
+            queryStructNames.put("pagination");
+            queryStructNames.put("fields");
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/search/recent", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);

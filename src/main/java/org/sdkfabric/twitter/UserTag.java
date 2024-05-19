@@ -47,8 +47,8 @@ public class UserTag extends TagAbstract {
             queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put('pagination');
-            queryStructNames.put('fields');
+            queryStructNames.put("pagination");
+            queryStructNames.put("fields");
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/timelines/reverse_chronological", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -87,7 +87,7 @@ public class UserTag extends TagAbstract {
             queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put('fields');
+            queryStructNames.put("fields");
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/liked_tweets", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -195,7 +195,7 @@ public class UserTag extends TagAbstract {
             queryParams.put("fields", fields);
 
             List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put('fields');
+            queryStructNames.put("fields");
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/by", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
