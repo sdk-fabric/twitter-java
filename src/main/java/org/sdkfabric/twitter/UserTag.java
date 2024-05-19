@@ -33,6 +33,80 @@ public class UserTag extends TagAbstract {
 
 
     /**
+     * Returns a variety of information about one or more users specified by the requested IDs.
+     */
+    public UserCollection getAll(String ids, String expansions, Fields fields) throws ClientException {
+        try {
+            Map<String, Object> pathParams = new HashMap<>();
+
+            Map<String, Object> queryParams = new HashMap<>();
+            queryParams.put("ids", ids);
+            queryParams.put("expansions", expansions);
+            queryParams.put("fields", fields);
+
+            List<String> queryStructNames = new ArrayList<String>();
+            queryStructNames.put("fields");
+
+            URIBuilder builder = new URIBuilder(this.parser.url("/2/users", pathParams));
+            this.parser.query(builder, queryParams, queryStructNames);
+
+            HttpGet request = new HttpGet(builder.build());
+
+            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
+                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+            });
+
+            if (resp.code >= 200 && resp.code < 300) {
+                return this.parser.parse(resp.payload, UserCollection.class);
+            }
+
+            switch (resp.code) {
+                default:
+                    throw new UnknownStatusCodeException("The server returned an unknown status code");
+            }
+        } catch (URISyntaxException | IOException e) {
+            throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Returns a variety of information about a single user specified by the requested ID.
+     */
+    public User get(String userId, String expansions, Fields fields) throws ClientException {
+        try {
+            Map<String, Object> pathParams = new HashMap<>();
+            pathParams.put("user_id", userId);
+
+            Map<String, Object> queryParams = new HashMap<>();
+            queryParams.put("expansions", expansions);
+            queryParams.put("fields", fields);
+
+            List<String> queryStructNames = new ArrayList<String>();
+            queryStructNames.put("fields");
+
+            URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id", pathParams));
+            this.parser.query(builder, queryParams, queryStructNames);
+
+            HttpGet request = new HttpGet(builder.build());
+
+            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
+                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+            });
+
+            if (resp.code >= 200 && resp.code < 300) {
+                return this.parser.parse(resp.payload, User.class);
+            }
+
+            switch (resp.code) {
+                default:
+                    throw new UnknownStatusCodeException("The server returned an unknown status code");
+            }
+        } catch (URISyntaxException | IOException e) {
+            throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
+        }
+    }
+
+    /**
      * Allows you to retrieve a collection of the most recent Tweets and Retweets posted by you and users you follow. This endpoint can return every Tweet created on a timeline over the last 7 days as well as the most recent 800 regardless of creation date.
      */
     public TweetCollection getTimeline(String userId, String exclude, String expansions, Pagination pagination, Fields fields) throws ClientException {
