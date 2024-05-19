@@ -17,6 +17,8 @@ public class Tweet {
     private TweetReply reply;
     private String replySettings;
     private String text;
+    private Boolean possiblySensitive;
+    private String lang;
     @JsonSetter("direct_message_deep_link")
     public void setDirectMessageDeepLink(String directMessageDeepLink) {
         this.directMessageDeepLink = directMessageDeepLink;
@@ -88,5 +90,21 @@ public class Tweet {
     @JsonGetter("text")
     public String getText() {
         return this.text;
+    }
+    @JsonSetter("possibly_sensitive")
+    public void setPossiblySensitive(Boolean possiblySensitive) {
+        this.possiblySensitive = possiblySensitive;
+    }
+    @JsonGetter("possibly_sensitive")
+    public Boolean getPossiblySensitive() {
+        return this.possiblySensitive;
+    }
+    @JsonSetter("lang")
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+    @JsonGetter("lang")
+    public String getLang() {
+        return this.lang;
     }
 }
