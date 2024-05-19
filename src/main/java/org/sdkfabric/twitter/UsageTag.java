@@ -41,7 +41,7 @@ public class UsageTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
-            List<String> queryStructNames = new ArrayList<String>();
+            List<String> queryStructNames = new ArrayList<>();
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/usage/tweets", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);

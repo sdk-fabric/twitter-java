@@ -45,8 +45,8 @@ public class BookmarkTag extends TagAbstract {
             queryParams.put("pagination_token", paginationToken);
             queryParams.put("fields", fields);
 
-            List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put("fields");
+            List<String> queryStructNames = new ArrayList<>();
+            queryStructNames.add("fields");
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/bookmarks", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -77,7 +77,7 @@ public class BookmarkTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
-            List<String> queryStructNames = new ArrayList<String>();
+            List<String> queryStructNames = new ArrayList<>();
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/bookmarks", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -111,7 +111,7 @@ public class BookmarkTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
-            List<String> queryStructNames = new ArrayList<String>();
+            List<String> queryStructNames = new ArrayList<>();
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/bookmarks/:tweet_id", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);

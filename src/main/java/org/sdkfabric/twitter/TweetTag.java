@@ -44,8 +44,8 @@ public class TweetTag extends TagAbstract {
             queryParams.put("expansions", expansions);
             queryParams.put("fields", fields);
 
-            List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put("fields");
+            List<String> queryStructNames = new ArrayList<>();
+            queryStructNames.add("fields");
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -81,8 +81,8 @@ public class TweetTag extends TagAbstract {
             queryParams.put("expansions", expansions);
             queryParams.put("fields", fields);
 
-            List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put("fields");
+            List<String> queryStructNames = new ArrayList<>();
+            queryStructNames.add("fields");
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/:tweet_id", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -115,7 +115,7 @@ public class TweetTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
-            List<String> queryStructNames = new ArrayList<String>();
+            List<String> queryStructNames = new ArrayList<>();
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -151,7 +151,7 @@ public class TweetTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
-            List<String> queryStructNames = new ArrayList<String>();
+            List<String> queryStructNames = new ArrayList<>();
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/:tweet_id", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -185,7 +185,7 @@ public class TweetTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
-            List<String> queryStructNames = new ArrayList<String>();
+            List<String> queryStructNames = new ArrayList<>();
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/:tweet_id/hidden", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -224,7 +224,7 @@ public class TweetTag extends TagAbstract {
             queryParams.put("max_results", maxResults);
             queryParams.put("pagination_token", paginationToken);
 
-            List<String> queryStructNames = new ArrayList<String>();
+            List<String> queryStructNames = new ArrayList<>();
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/tweets/:tweet_id/liking_users", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);

@@ -42,7 +42,7 @@ public class TrendsTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
-            List<String> queryStructNames = new ArrayList<String>();
+            List<String> queryStructNames = new ArrayList<>();
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/trends/by/woeid/:woeid", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);

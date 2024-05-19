@@ -44,8 +44,8 @@ public class UserTag extends TagAbstract {
             queryParams.put("expansions", expansions);
             queryParams.put("fields", fields);
 
-            List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put("fields");
+            List<String> queryStructNames = new ArrayList<>();
+            queryStructNames.add("fields");
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -81,8 +81,8 @@ public class UserTag extends TagAbstract {
             queryParams.put("expansions", expansions);
             queryParams.put("fields", fields);
 
-            List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put("fields");
+            List<String> queryStructNames = new ArrayList<>();
+            queryStructNames.add("fields");
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -120,9 +120,9 @@ public class UserTag extends TagAbstract {
             queryParams.put("pagination", pagination);
             queryParams.put("fields", fields);
 
-            List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put("pagination");
-            queryStructNames.put("fields");
+            List<String> queryStructNames = new ArrayList<>();
+            queryStructNames.add("pagination");
+            queryStructNames.add("fields");
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/timelines/reverse_chronological", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -160,8 +160,8 @@ public class UserTag extends TagAbstract {
             queryParams.put("pagination_token", paginationToken);
             queryParams.put("fields", fields);
 
-            List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put("fields");
+            List<String> queryStructNames = new ArrayList<>();
+            queryStructNames.add("fields");
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/liked_tweets", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -196,7 +196,7 @@ public class UserTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
-            List<String> queryStructNames = new ArrayList<String>();
+            List<String> queryStructNames = new ArrayList<>();
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/likes/:tweet_id", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -230,7 +230,7 @@ public class UserTag extends TagAbstract {
 
             Map<String, Object> queryParams = new HashMap<>();
 
-            List<String> queryStructNames = new ArrayList<String>();
+            List<String> queryStructNames = new ArrayList<>();
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/:user_id/likes", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -268,8 +268,8 @@ public class UserTag extends TagAbstract {
             queryParams.put("expansions", expansions);
             queryParams.put("fields", fields);
 
-            List<String> queryStructNames = new ArrayList<String>();
-            queryStructNames.put("fields");
+            List<String> queryStructNames = new ArrayList<>();
+            queryStructNames.add("fields");
 
             URIBuilder builder = new URIBuilder(this.parser.url("/2/users/by", pathParams));
             this.parser.query(builder, queryParams, queryStructNames);
@@ -282,6 +282,41 @@ public class UserTag extends TagAbstract {
 
             if (resp.code >= 200 && resp.code < 300) {
                 return this.parser.parse(resp.payload, UserCollection.class);
+            }
+
+            switch (resp.code) {
+                default:
+                    throw new UnknownStatusCodeException("The server returned an unknown status code");
+            }
+        } catch (URISyntaxException | IOException e) {
+            throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Returns information about an authorized user.
+     */
+    public User getMe(String expansions, String fields) throws ClientException {
+        try {
+            Map<String, Object> pathParams = new HashMap<>();
+
+            Map<String, Object> queryParams = new HashMap<>();
+            queryParams.put("expansions", expansions);
+            queryParams.put("fields", fields);
+
+            List<String> queryStructNames = new ArrayList<>();
+
+            URIBuilder builder = new URIBuilder(this.parser.url("/2/users/me", pathParams));
+            this.parser.query(builder, queryParams, queryStructNames);
+
+            HttpGet request = new HttpGet(builder.build());
+
+            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
+                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+            });
+
+            if (resp.code >= 200 && resp.code < 300) {
+                return this.parser.parse(resp.payload, User.class);
             }
 
             switch (resp.code) {
