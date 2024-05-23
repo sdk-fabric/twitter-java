@@ -9,6 +9,7 @@ import app.sdkgen.client.Exception.ClientException;
 import app.sdkgen.client.Exception.UnknownStatusCodeException;
 import app.sdkgen.client.Parser;
 import app.sdkgen.client.TagAbstract;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.hc.client5.http.classic.HttpClient;
 import org.apache.hc.client5.http.classic.methods.*;
@@ -57,7 +58,7 @@ public class UserTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, UserCollection.class);
+                return this.parser.parse(resp.payload, new TypeReference<UserCollection>(){});
             }
 
             switch (resp.code) {
@@ -94,7 +95,7 @@ public class UserTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, User.class);
+                return this.parser.parse(resp.payload, new TypeReference<User>(){});
             }
 
             switch (resp.code) {
@@ -134,7 +135,7 @@ public class UserTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, TweetCollection.class);
+                return this.parser.parse(resp.payload, new TypeReference<TweetCollection>(){});
             }
 
             switch (resp.code) {
@@ -173,7 +174,7 @@ public class UserTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, TweetCollection.class);
+                return this.parser.parse(resp.payload, new TypeReference<TweetCollection>(){});
             }
 
             switch (resp.code) {
@@ -208,7 +209,7 @@ public class UserTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, LikeResponse.class);
+                return this.parser.parse(resp.payload, new TypeReference<LikeResponse>(){});
             }
 
             switch (resp.code) {
@@ -244,7 +245,7 @@ public class UserTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, LikeResponse.class);
+                return this.parser.parse(resp.payload, new TypeReference<LikeResponse>(){});
             }
 
             switch (resp.code) {
@@ -281,7 +282,7 @@ public class UserTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, UserCollection.class);
+                return this.parser.parse(resp.payload, new TypeReference<UserCollection>(){});
             }
 
             switch (resp.code) {
@@ -316,7 +317,7 @@ public class UserTag extends TagAbstract {
             });
 
             if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, User.class);
+                return this.parser.parse(resp.payload, new TypeReference<User>(){});
             }
 
             switch (resp.code) {

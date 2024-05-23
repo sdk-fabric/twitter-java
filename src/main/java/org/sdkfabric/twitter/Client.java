@@ -13,6 +13,7 @@ import app.sdkgen.client.Exception.ClientException;
 import app.sdkgen.client.Exception.UnknownStatusCodeException;
 import app.sdkgen.client.Parser;
 import app.sdkgen.client.TokenStoreInterface;
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.apache.hc.client5.http.classic.methods.*;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
@@ -90,6 +91,15 @@ public class Client extends ClientAbstract {
     public TrendsTag trends()
     {
         return new TrendsTag(
+            this.httpClient,
+            this.objectMapper,
+            this.parser
+        );
+    }
+
+    public RetweetTag retweet()
+    {
+        return new RetweetTag(
             this.httpClient,
             this.objectMapper,
             this.parser
