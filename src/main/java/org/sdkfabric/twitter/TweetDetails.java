@@ -7,14 +7,12 @@ package org.sdkfabric.twitter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.time.LocalDateTime;
-import java.util.List;
 public class TweetDetails {
     private String id;
     private String text;
-    private LocalDateTime createdAt;
+    private java.time.LocalDateTime createdAt;
     private String authorId;
-    private List<String> editHistoryTweetIds;
+    private java.util.List<String> editHistoryTweetIds;
     private String conversationId;
     private String inReplyToUserId;
     @JsonSetter("id")
@@ -34,11 +32,11 @@ public class TweetDetails {
         return this.text;
     }
     @JsonSetter("created_at")
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(java.time.LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
     @JsonGetter("created_at")
-    public LocalDateTime getCreatedAt() {
+    public java.time.LocalDateTime getCreatedAt() {
         return this.createdAt;
     }
     @JsonSetter("author_id")
@@ -50,11 +48,11 @@ public class TweetDetails {
         return this.authorId;
     }
     @JsonSetter("edit_history_tweet_ids")
-    public void setEditHistoryTweetIds(List<String> editHistoryTweetIds) {
+    public void setEditHistoryTweetIds(java.util.List<String> editHistoryTweetIds) {
         this.editHistoryTweetIds = editHistoryTweetIds;
     }
     @JsonGetter("edit_history_tweet_ids")
-    public List<String> getEditHistoryTweetIds() {
+    public java.util.List<String> getEditHistoryTweetIds() {
         return this.editHistoryTweetIds;
     }
     @JsonSetter("conversation_id")

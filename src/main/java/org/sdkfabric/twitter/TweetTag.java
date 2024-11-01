@@ -13,15 +13,15 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.hc.client5.http.classic.HttpClient;
 import org.apache.hc.client5.http.classic.methods.*;
+import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
 import org.apache.hc.core5.http.ContentType;
-import org.apache.hc.core5.http.io.entity.EntityUtils;
-import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.apache.hc.core5.http.io.entity.*;
 import org.apache.hc.core5.net.URIBuilder;
+import org.apache.hc.core5.net.URLEncodedUtils;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,18 +53,17 @@ public class TweetTag extends TagAbstract {
 
             HttpGet request = new HttpGet(builder.build());
 
-            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
-                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+
+            return this.httpClient.execute(request, response -> {
+                if (response.getCode() >= 200 && response.getCode() <= 299) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<TweetCollection>(){});
+
+                    return data;
+                }
+
+                var statusCode = response.getCode();
+                throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
-
-            if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, new TypeReference<TweetCollection>(){});
-            }
-
-            switch (resp.code) {
-                default:
-                    throw new UnknownStatusCodeException("The server returned an unknown status code");
-            }
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
@@ -90,18 +89,17 @@ public class TweetTag extends TagAbstract {
 
             HttpGet request = new HttpGet(builder.build());
 
-            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
-                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+
+            return this.httpClient.execute(request, response -> {
+                if (response.getCode() >= 200 && response.getCode() <= 299) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<TweetEntity>(){});
+
+                    return data;
+                }
+
+                var statusCode = response.getCode();
+                throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
-
-            if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, new TypeReference<TweetEntity>(){});
-            }
-
-            switch (resp.code) {
-                default:
-                    throw new UnknownStatusCodeException("The server returned an unknown status code");
-            }
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
@@ -122,21 +120,20 @@ public class TweetTag extends TagAbstract {
             this.parser.query(builder, queryParams, queryStructNames);
 
             HttpPost request = new HttpPost(builder.build());
-            request.addHeader("Content-Type", "application/json");
             request.setEntity(new StringEntity(this.objectMapper.writeValueAsString(payload), ContentType.APPLICATION_JSON));
 
-            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
-                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+            request.setHeader("Content-Type", "application/json");
+
+            return this.httpClient.execute(request, response -> {
+                if (response.getCode() >= 200 && response.getCode() <= 299) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<TweetCreateResponse>(){});
+
+                    return data;
+                }
+
+                var statusCode = response.getCode();
+                throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
-
-            if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, new TypeReference<TweetCreateResponse>(){});
-            }
-
-            switch (resp.code) {
-                default:
-                    throw new UnknownStatusCodeException("The server returned an unknown status code");
-            }
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
@@ -159,18 +156,17 @@ public class TweetTag extends TagAbstract {
 
             HttpDelete request = new HttpDelete(builder.build());
 
-            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
-                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+
+            return this.httpClient.execute(request, response -> {
+                if (response.getCode() >= 200 && response.getCode() <= 299) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<TweetDeleteResponse>(){});
+
+                    return data;
+                }
+
+                var statusCode = response.getCode();
+                throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
-
-            if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, new TypeReference<TweetDeleteResponse>(){});
-            }
-
-            switch (resp.code) {
-                default:
-                    throw new UnknownStatusCodeException("The server returned an unknown status code");
-            }
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
@@ -192,21 +188,20 @@ public class TweetTag extends TagAbstract {
             this.parser.query(builder, queryParams, queryStructNames);
 
             HttpPut request = new HttpPut(builder.build());
-            request.addHeader("Content-Type", "application/json");
             request.setEntity(new StringEntity(this.objectMapper.writeValueAsString(payload), ContentType.APPLICATION_JSON));
 
-            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
-                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+            request.setHeader("Content-Type", "application/json");
+
+            return this.httpClient.execute(request, response -> {
+                if (response.getCode() >= 200 && response.getCode() <= 299) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<HideReplyResponse>(){});
+
+                    return data;
+                }
+
+                var statusCode = response.getCode();
+                throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
-
-            if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, new TypeReference<HideReplyResponse>(){});
-            }
-
-            switch (resp.code) {
-                default:
-                    throw new UnknownStatusCodeException("The server returned an unknown status code");
-            }
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
@@ -232,22 +227,22 @@ public class TweetTag extends TagAbstract {
 
             HttpGet request = new HttpGet(builder.build());
 
-            final Parser.HttpReturn resp = this.httpClient.execute(request, response -> {
-                return this.parser.handle(response.getCode(), EntityUtils.toString(response.getEntity()));
+
+            return this.httpClient.execute(request, response -> {
+                if (response.getCode() >= 200 && response.getCode() <= 299) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<UserCollection>(){});
+
+                    return data;
+                }
+
+                var statusCode = response.getCode();
+                throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
-
-            if (resp.code >= 200 && resp.code < 300) {
-                return this.parser.parse(resp.payload, new TypeReference<UserCollection>(){});
-            }
-
-            switch (resp.code) {
-                default:
-                    throw new UnknownStatusCodeException("The server returned an unknown status code");
-            }
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
     }
+
 
 
 }

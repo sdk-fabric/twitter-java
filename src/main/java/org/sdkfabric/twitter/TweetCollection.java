@@ -7,15 +7,14 @@ package org.sdkfabric.twitter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 public class TweetCollection {
-    private List<TweetDetails> data;
+    private java.util.List<TweetDetails> data;
     @JsonSetter("data")
-    public void setData(List<TweetDetails> data) {
+    public void setData(java.util.List<TweetDetails> data) {
         this.data = data;
     }
     @JsonGetter("data")
-    public List<TweetDetails> getData() {
+    public java.util.List<TweetDetails> getData() {
         return this.data;
     }
 }

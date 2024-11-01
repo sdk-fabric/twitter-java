@@ -7,16 +7,15 @@ package org.sdkfabric.twitter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 public class TweetReply {
-    private List<String> excludeReplyUserIds;
+    private java.util.List<String> excludeReplyUserIds;
     private String inReplyToTweetId;
     @JsonSetter("exclude_reply_user_ids")
-    public void setExcludeReplyUserIds(List<String> excludeReplyUserIds) {
+    public void setExcludeReplyUserIds(java.util.List<String> excludeReplyUserIds) {
         this.excludeReplyUserIds = excludeReplyUserIds;
     }
     @JsonGetter("exclude_reply_user_ids")
-    public List<String> getExcludeReplyUserIds() {
+    public java.util.List<String> getExcludeReplyUserIds() {
         return this.excludeReplyUserIds;
     }
     @JsonSetter("in_reply_to_tweet_id")

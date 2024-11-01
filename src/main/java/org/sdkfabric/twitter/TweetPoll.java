@@ -7,10 +7,9 @@ package org.sdkfabric.twitter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 public class TweetPoll {
     private Integer durationMinutes;
-    private List<String> options;
+    private java.util.List<String> options;
     @JsonSetter("duration_minutes")
     public void setDurationMinutes(Integer durationMinutes) {
         this.durationMinutes = durationMinutes;
@@ -20,11 +19,11 @@ public class TweetPoll {
         return this.durationMinutes;
     }
     @JsonSetter("options")
-    public void setOptions(List<String> options) {
+    public void setOptions(java.util.List<String> options) {
         this.options = options;
     }
     @JsonGetter("options")
-    public List<String> getOptions() {
+    public java.util.List<String> getOptions() {
         return this.options;
     }
 }
