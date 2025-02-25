@@ -7,24 +7,23 @@ package org.sdkfabric.twitter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 public class TweetMedia {
-    private List<String> mediaIds;
-    private List<String> taggedUserIds;
+    private java.util.List<String> mediaIds;
+    private java.util.List<String> taggedUserIds;
     @JsonSetter("media_ids")
-    public void setMediaIds(List<String> mediaIds) {
+    public void setMediaIds(java.util.List<String> mediaIds) {
         this.mediaIds = mediaIds;
     }
     @JsonGetter("media_ids")
-    public List<String> getMediaIds() {
+    public java.util.List<String> getMediaIds() {
         return this.mediaIds;
     }
     @JsonSetter("tagged_user_ids")
-    public void setTaggedUserIds(List<String> taggedUserIds) {
+    public void setTaggedUserIds(java.util.List<String> taggedUserIds) {
         this.taggedUserIds = taggedUserIds;
     }
     @JsonGetter("tagged_user_ids")
-    public List<String> getTaggedUserIds() {
+    public java.util.List<String> getTaggedUserIds() {
         return this.taggedUserIds;
     }
 }
