@@ -5,16 +5,19 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class LikeResponse {
     private Like data;
+
     @JsonSetter("data")
     public void setData(Like data) {
         this.data = data;
     }
+
     @JsonGetter("data")
     public Like getData() {
         return this.data;
     }
 }
+

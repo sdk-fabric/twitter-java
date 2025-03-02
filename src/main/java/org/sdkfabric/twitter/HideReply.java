@@ -5,16 +5,19 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class HideReply {
     private Boolean hidden;
+
     @JsonSetter("hidden")
     public void setHidden(Boolean hidden) {
         this.hidden = hidden;
     }
+
     @JsonGetter("hidden")
     public Boolean getHidden() {
         return this.hidden;
     }
 }
+

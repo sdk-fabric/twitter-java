@@ -5,16 +5,20 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class Bookmark {
+    @JsonPropertyDescription("Indicates whether the user bookmarks the specified Tweet as a result of this request.")
     private Boolean bookmarked;
+
     @JsonSetter("bookmarked")
     public void setBookmarked(Boolean bookmarked) {
         this.bookmarked = bookmarked;
     }
+
     @JsonGetter("bookmarked")
     public Boolean getBookmarked() {
         return this.bookmarked;
     }
 }
+

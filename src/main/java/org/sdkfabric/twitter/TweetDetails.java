@@ -5,70 +5,92 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class TweetDetails {
+    @JsonPropertyDescription("Unique identifier of this Tweet. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.")
     private String id;
+    @JsonPropertyDescription("The content of the Tweet.")
     private String text;
+    @JsonPropertyDescription("Creation time of the Tweet.")
     private java.time.LocalDateTime createdAt;
+    @JsonPropertyDescription("Unique identifier of this user. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.")
     private String authorId;
+    @JsonPropertyDescription("Unique identifiers indicating all versions of an edited Tweet. For Tweets with no edits, there will be one ID. For Tweets with an edit history, there will be multiple IDs, arranged in ascending order reflecting the order of edit, with the most recent version in the last position of the array.")
     private java.util.List<String> editHistoryTweetIds;
+    @JsonPropertyDescription("The Tweet ID of the original Tweet of the conversation (which includes direct replies, replies of replies).")
     private String conversationId;
+    @JsonPropertyDescription("If this Tweet is a Reply, indicates the user ID of the parent Tweet's author. This is returned as a string in order to avoid complications with languages and tools that cannot handle large integers.")
     private String inReplyToUserId;
+
     @JsonSetter("id")
     public void setId(String id) {
         this.id = id;
     }
+
     @JsonGetter("id")
     public String getId() {
         return this.id;
     }
+
     @JsonSetter("text")
     public void setText(String text) {
         this.text = text;
     }
+
     @JsonGetter("text")
     public String getText() {
         return this.text;
     }
+
     @JsonSetter("created_at")
     public void setCreatedAt(java.time.LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
     @JsonGetter("created_at")
     public java.time.LocalDateTime getCreatedAt() {
         return this.createdAt;
     }
+
     @JsonSetter("author_id")
     public void setAuthorId(String authorId) {
         this.authorId = authorId;
     }
+
     @JsonGetter("author_id")
     public String getAuthorId() {
         return this.authorId;
     }
+
     @JsonSetter("edit_history_tweet_ids")
     public void setEditHistoryTweetIds(java.util.List<String> editHistoryTweetIds) {
         this.editHistoryTweetIds = editHistoryTweetIds;
     }
+
     @JsonGetter("edit_history_tweet_ids")
     public java.util.List<String> getEditHistoryTweetIds() {
         return this.editHistoryTweetIds;
     }
+
     @JsonSetter("conversation_id")
     public void setConversationId(String conversationId) {
         this.conversationId = conversationId;
     }
+
     @JsonGetter("conversation_id")
     public String getConversationId() {
         return this.conversationId;
     }
+
     @JsonSetter("in_reply_to_user_id")
     public void setInReplyToUserId(String inReplyToUserId) {
         this.inReplyToUserId = inReplyToUserId;
     }
+
     @JsonGetter("in_reply_to_user_id")
     public String getInReplyToUserId() {
         return this.inReplyToUserId;
     }
 }
+

@@ -5,16 +5,19 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class TrendCollection {
     private java.util.List<Trend> data;
+
     @JsonSetter("data")
     public void setData(java.util.List<Trend> data) {
         this.data = data;
     }
+
     @JsonGetter("data")
     public java.util.List<Trend> getData() {
         return this.data;
     }
 }
+

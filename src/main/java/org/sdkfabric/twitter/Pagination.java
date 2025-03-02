@@ -5,8 +5,8 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class Pagination {
     private String startTime;
     private String endTime;
@@ -14,52 +14,65 @@ public class Pagination {
     private String untilId;
     private Integer maxResults;
     private String paginationToken;
+
     @JsonSetter("start_time")
     public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
+
     @JsonGetter("start_time")
     public String getStartTime() {
         return this.startTime;
     }
+
     @JsonSetter("end_time")
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
+
     @JsonGetter("end_time")
     public String getEndTime() {
         return this.endTime;
     }
+
     @JsonSetter("since_id")
     public void setSinceId(String sinceId) {
         this.sinceId = sinceId;
     }
+
     @JsonGetter("since_id")
     public String getSinceId() {
         return this.sinceId;
     }
+
     @JsonSetter("until_id")
     public void setUntilId(String untilId) {
         this.untilId = untilId;
     }
+
     @JsonGetter("until_id")
     public String getUntilId() {
         return this.untilId;
     }
+
     @JsonSetter("max_results")
     public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
+
     @JsonGetter("max_results")
     public Integer getMaxResults() {
         return this.maxResults;
     }
+
     @JsonSetter("pagination_token")
     public void setPaginationToken(String paginationToken) {
         this.paginationToken = paginationToken;
     }
+
     @JsonGetter("pagination_token")
     public String getPaginationToken() {
         return this.paginationToken;
     }
 }
+

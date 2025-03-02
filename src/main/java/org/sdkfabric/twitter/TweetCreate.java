@@ -5,25 +5,30 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class TweetCreate {
     private String id;
     private String text;
+
     @JsonSetter("id")
     public void setId(String id) {
         this.id = id;
     }
+
     @JsonGetter("id")
     public String getId() {
         return this.id;
     }
+
     @JsonSetter("text")
     public void setText(String text) {
         this.text = text;
     }
+
     @JsonGetter("text")
     public String getText() {
         return this.text;
     }
 }
+

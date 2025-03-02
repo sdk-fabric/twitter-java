@@ -5,106 +5,140 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class Tweet {
+    @JsonPropertyDescription("Tweets a link directly to a Direct Message conversation with an account.")
     private String directMessageDeepLink;
+    @JsonPropertyDescription("Allows you to Tweet exclusively for Super Followers.")
     private Boolean forSuperFollowersOnly;
+    @JsonPropertyDescription("A JSON object that contains location information for a Tweet. You can only add a location to Tweets if you have geo enabled in your profile settings. If you don't have geo enabled, you can still add a location parameter in your request body, but it won't get attached to your Tweet")
     private TweetGeo geo;
+    @JsonPropertyDescription("A JSON object that contains media information being attached to created Tweet. This is mutually exclusive from Quote Tweet ID and Poll.")
     private TweetMedia media;
+    @JsonPropertyDescription("A JSON object that contains options for a Tweet with a poll. This is mutually exclusive from Media and Quote Tweet ID.")
     private TweetPoll poll;
+    @JsonPropertyDescription("Link to the Tweet being quoted.")
     private String quoteTweetId;
+    @JsonPropertyDescription("A JSON object that contains information of the Tweet being replied to.")
     private TweetReply reply;
+    @JsonPropertyDescription("Settings to indicate who can reply to the Tweet. Options include "mentionedUsers" and "following". If the field isn’t specified, it will default to everyone.")
     private String replySettings;
+    @JsonPropertyDescription("Text of the Tweet being created. This field is required if media.media_ids is not present.")
     private String text;
+    @JsonPropertyDescription("Indicates if this Tweet contains URLs marked as sensitive, for example content suitable for mature audiences.")
     private Boolean possiblySensitive;
+    @JsonPropertyDescription("Language of the Tweet, if detected by Twitter. Returned as a BCP47 language tag.")
     private String lang;
+
     @JsonSetter("direct_message_deep_link")
     public void setDirectMessageDeepLink(String directMessageDeepLink) {
         this.directMessageDeepLink = directMessageDeepLink;
     }
+
     @JsonGetter("direct_message_deep_link")
     public String getDirectMessageDeepLink() {
         return this.directMessageDeepLink;
     }
+
     @JsonSetter("for_super_followers_only")
     public void setForSuperFollowersOnly(Boolean forSuperFollowersOnly) {
         this.forSuperFollowersOnly = forSuperFollowersOnly;
     }
+
     @JsonGetter("for_super_followers_only")
     public Boolean getForSuperFollowersOnly() {
         return this.forSuperFollowersOnly;
     }
+
     @JsonSetter("geo")
     public void setGeo(TweetGeo geo) {
         this.geo = geo;
     }
+
     @JsonGetter("geo")
     public TweetGeo getGeo() {
         return this.geo;
     }
+
     @JsonSetter("media")
     public void setMedia(TweetMedia media) {
         this.media = media;
     }
+
     @JsonGetter("media")
     public TweetMedia getMedia() {
         return this.media;
     }
+
     @JsonSetter("poll")
     public void setPoll(TweetPoll poll) {
         this.poll = poll;
     }
+
     @JsonGetter("poll")
     public TweetPoll getPoll() {
         return this.poll;
     }
+
     @JsonSetter("quote_tweet_id")
     public void setQuoteTweetId(String quoteTweetId) {
         this.quoteTweetId = quoteTweetId;
     }
+
     @JsonGetter("quote_tweet_id")
     public String getQuoteTweetId() {
         return this.quoteTweetId;
     }
+
     @JsonSetter("reply")
     public void setReply(TweetReply reply) {
         this.reply = reply;
     }
+
     @JsonGetter("reply")
     public TweetReply getReply() {
         return this.reply;
     }
+
     @JsonSetter("reply_settings")
     public void setReplySettings(String replySettings) {
         this.replySettings = replySettings;
     }
+
     @JsonGetter("reply_settings")
     public String getReplySettings() {
         return this.replySettings;
     }
+
     @JsonSetter("text")
     public void setText(String text) {
         this.text = text;
     }
+
     @JsonGetter("text")
     public String getText() {
         return this.text;
     }
+
     @JsonSetter("possibly_sensitive")
     public void setPossiblySensitive(Boolean possiblySensitive) {
         this.possiblySensitive = possiblySensitive;
     }
+
     @JsonGetter("possibly_sensitive")
     public Boolean getPossiblySensitive() {
         return this.possiblySensitive;
     }
+
     @JsonSetter("lang")
     public void setLang(String lang) {
         this.lang = lang;
     }
+
     @JsonGetter("lang")
     public String getLang() {
         return this.lang;
     }
 }
+

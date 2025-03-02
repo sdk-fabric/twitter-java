@@ -5,25 +5,32 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class TweetPoll {
+    @JsonPropertyDescription("Duration of the poll in minutes for a Tweet with a poll. This is only required if the request includes poll.options.")
     private Integer durationMinutes;
+    @JsonPropertyDescription("A list of poll options for a Tweet with a poll. For the request to be successful it must also include duration_minutes too.")
     private java.util.List<String> options;
+
     @JsonSetter("duration_minutes")
     public void setDurationMinutes(Integer durationMinutes) {
         this.durationMinutes = durationMinutes;
     }
+
     @JsonGetter("duration_minutes")
     public Integer getDurationMinutes() {
         return this.durationMinutes;
     }
+
     @JsonSetter("options")
     public void setOptions(java.util.List<String> options) {
         this.options = options;
     }
+
     @JsonGetter("options")
     public java.util.List<String> getOptions() {
         return this.options;
     }
 }
+

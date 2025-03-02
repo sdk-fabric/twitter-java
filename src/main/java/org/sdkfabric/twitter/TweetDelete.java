@@ -5,16 +5,19 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class TweetDelete {
     private Boolean deleted;
+
     @JsonSetter("deleted")
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
+
     @JsonGetter("deleted")
     public Boolean getDeleted() {
         return this.deleted;
     }
 }
+

@@ -62,8 +62,16 @@ public class UserTag extends TagAbstract {
                 }
 
                 var statusCode = response.getCode();
+                if (statusCode >= 0 && statusCode <= 999) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<Errors>(){});
+
+                    throw new ErrorsException(data);
+                }
+
                 throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
+        } catch (ClientException e) {
+            throw e;
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
@@ -98,8 +106,16 @@ public class UserTag extends TagAbstract {
                 }
 
                 var statusCode = response.getCode();
+                if (statusCode >= 0 && statusCode <= 999) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<Errors>(){});
+
+                    throw new ErrorsException(data);
+                }
+
                 throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
+        } catch (ClientException e) {
+            throw e;
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
@@ -137,8 +153,16 @@ public class UserTag extends TagAbstract {
                 }
 
                 var statusCode = response.getCode();
+                if (statusCode >= 0 && statusCode <= 999) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<Errors>(){});
+
+                    throw new ErrorsException(data);
+                }
+
                 throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
+        } catch (ClientException e) {
+            throw e;
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
@@ -175,8 +199,16 @@ public class UserTag extends TagAbstract {
                 }
 
                 var statusCode = response.getCode();
+                if (statusCode >= 0 && statusCode <= 999) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<Errors>(){});
+
+                    throw new ErrorsException(data);
+                }
+
                 throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
+        } catch (ClientException e) {
+            throw e;
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
@@ -209,8 +241,16 @@ public class UserTag extends TagAbstract {
                 }
 
                 var statusCode = response.getCode();
+                if (statusCode >= 0 && statusCode <= 999) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<Errors>(){});
+
+                    throw new ErrorsException(data);
+                }
+
                 throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
+        } catch (ClientException e) {
+            throw e;
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
@@ -244,8 +284,16 @@ public class UserTag extends TagAbstract {
                 }
 
                 var statusCode = response.getCode();
+                if (statusCode >= 0 && statusCode <= 999) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<Errors>(){});
+
+                    throw new ErrorsException(data);
+                }
+
                 throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
+        } catch (ClientException e) {
+            throw e;
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
@@ -280,8 +328,16 @@ public class UserTag extends TagAbstract {
                 }
 
                 var statusCode = response.getCode();
+                if (statusCode >= 0 && statusCode <= 999) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<Errors>(){});
+
+                    throw new ErrorsException(data);
+                }
+
                 throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
+        } catch (ClientException e) {
+            throw e;
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }
@@ -314,8 +370,16 @@ public class UserTag extends TagAbstract {
                 }
 
                 var statusCode = response.getCode();
+                if (statusCode >= 0 && statusCode <= 999) {
+                    var data = this.parser.parse(EntityUtils.toString(response.getEntity()), new TypeReference<Errors>(){});
+
+                    throw new ErrorsException(data);
+                }
+
                 throw new UnknownStatusCodeException("The server returned an unknown status code: " + statusCode);
             });
+        } catch (ClientException e) {
+            throw e;
         } catch (URISyntaxException | IOException e) {
             throw new ClientException("An unknown error occurred: " + e.getMessage(), e);
         }

@@ -5,16 +5,20 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class TweetGeo {
+    @JsonPropertyDescription("Place ID being attached to the Tweet for geo location.")
     private String placeId;
+
     @JsonSetter("place_id")
     public void setPlaceId(String placeId) {
         this.placeId = placeId;
     }
+
     @JsonGetter("place_id")
     public String getPlaceId() {
         return this.placeId;
     }
 }
+

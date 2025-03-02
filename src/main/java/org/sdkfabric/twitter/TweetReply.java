@@ -5,25 +5,32 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class TweetReply {
+    @JsonPropertyDescription("A list of User IDs to be excluded from the reply Tweet thus removing a user from a thread.")
     private java.util.List<String> excludeReplyUserIds;
+    @JsonPropertyDescription("Tweet ID of the Tweet being replied to. Please note that in_reply_to_tweet_id needs to be in the request if exclude_reply_user_ids is present.")
     private String inReplyToTweetId;
+
     @JsonSetter("exclude_reply_user_ids")
     public void setExcludeReplyUserIds(java.util.List<String> excludeReplyUserIds) {
         this.excludeReplyUserIds = excludeReplyUserIds;
     }
+
     @JsonGetter("exclude_reply_user_ids")
     public java.util.List<String> getExcludeReplyUserIds() {
         return this.excludeReplyUserIds;
     }
+
     @JsonSetter("in_reply_to_tweet_id")
     public void setInReplyToTweetId(String inReplyToTweetId) {
         this.inReplyToTweetId = inReplyToTweetId;
     }
+
     @JsonGetter("in_reply_to_tweet_id")
     public String getInReplyToTweetId() {
         return this.inReplyToTweetId;
     }
 }
+

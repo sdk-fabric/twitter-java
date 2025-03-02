@@ -5,16 +5,19 @@
 
 package org.sdkfabric.twitter;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.*;
+
 public class SingleTweet {
     private String tweetId;
+
     @JsonSetter("tweet_id")
     public void setTweetId(String tweetId) {
         this.tweetId = tweetId;
     }
+
     @JsonGetter("tweet_id")
     public String getTweetId() {
         return this.tweetId;
     }
 }
+
