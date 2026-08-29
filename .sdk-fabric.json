@@ -1,0 +1,14 @@
+{
+  "typehub_user": "sdkfabric",
+  "typehub_document": "twitter",
+  "github_user": "sdk-fabric",
+  "github_repository": "twitter-java",
+
+  "name": "Twitter",
+  "description": "Twitter Java SDK managed by SDK Fabric",
+  "website": "https://sdk-fabric.org",
+  "namespace": "org.sdkfabric.twitter",
+  "namespace_path": "org/sdkfabric/twitter",
+  "group_id": "org.sdk-fabric",
+  "artifact_id": "twitter"
+}
