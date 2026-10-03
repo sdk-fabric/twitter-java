@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
     <name>Twitter</name>
     <description>Twitter Java SDK managed by SDK Fabric</description>
-    <url>https://sdk-fabric.org/twitter</url>
+    <url>https://sdk-fabric.org</url>
     <licenses>
         <license>
             <name>MIT</name>
